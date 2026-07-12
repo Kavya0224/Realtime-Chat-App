@@ -5,12 +5,19 @@ import messageRoutes from "./routes/messageRoutes.js";
 
 const app = express();
 
-// Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://your-vercel-app.vercel.app",
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health Check Route
 app.get("/", (req, res) => {
   res.status(200).json({
     success: true,
@@ -18,10 +25,8 @@ app.get("/", (req, res) => {
   });
 });
 
-// API Routes
 app.use("/api/messages", messageRoutes);
 
-// Handle Unknown Routes
 app.use((req, res) => {
   res.status(404).json({
     success: false,
