@@ -9,7 +9,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://realtime-chat-app-snowy-gamma.vercel.app/",
+      "https://realtime-chat-app-a5tn.vercel.app/",
     ],
     credentials: true,
   })
